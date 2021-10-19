@@ -27,4 +27,9 @@ router.get("/posts/:id", (req, res) => {
   res.send(`Looking at post with id: ${req.params.id}`);
 });
 
+//Get Create-post page
+router.get("/create-post",(req,res)=> {
+  res.sendFile(path.join(__dirname, "../public/create-post.html"));
+});
+
 module.exports = router;

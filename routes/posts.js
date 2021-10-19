@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 
 // Create new Post
 router.post("/", (req, res) => {
-  res.send(`Creating new post: ${JSON.stringify(req.query)}`);
+  res.send(`Creating new post: ${JSON.stringify(req.body)}`);
 });
 
 // Get post with id
