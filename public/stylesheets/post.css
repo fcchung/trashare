@@ -6,6 +6,10 @@
   min-height: 240px;
 }
 
+.img {
+  width: 100%;
+}
+
 .container {
   margin-top: 10%;
   border-radius: 4px;

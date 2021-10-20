@@ -1,8 +1,19 @@
 const express = require("express");
 const multer = require("multer");
+const path = require("path");
 const router = express.Router();
 
-const upload = multer({ dest: "uploads/" });
+// setup multer for pass through upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../uploads"));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, `${uniqueSuffix}.${file.originalname.split(".")[1]}`);
+  },
+});
+const upload = multer({ storage: storage });
 
 // Read all posts
 router.get("/", (req, res) => {
@@ -12,9 +23,9 @@ router.get("/", (req, res) => {
 // Create new Post
 router.post("/", upload.array("images"), (req, res) => {
   res.send(
-    `Creating new post: ${JSON.stringify(req.body)} with ${
-      req.files.length
-    } images`
+    `Creating new post: ${JSON.stringify(req.body)} with ${req.files.map((f) =>
+      JSON.stringify(f)
+    )} images`
   );
 });
 
