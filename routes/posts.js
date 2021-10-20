@@ -1,5 +1,8 @@
 const express = require("express");
+const multer = require("multer");
 const router = express.Router();
+
+const upload = multer({ dest: "uploads/" });
 
 // Read all posts
 router.get("/", (req, res) => {
@@ -7,8 +10,12 @@ router.get("/", (req, res) => {
 });
 
 // Create new Post
-router.post("/", (req, res) => {
-  res.send(`Creating new post: ${JSON.stringify(req.body)}`);
+router.post("/", upload.array("images"), (req, res) => {
+  res.send(
+    `Creating new post: ${JSON.stringify(req.body)} with ${
+      req.files.length
+    } images`
+  );
 });
 
 // Get post with id

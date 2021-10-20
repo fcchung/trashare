@@ -28,7 +28,7 @@ router.get("/posts/:id", (req, res) => {
 });
 
 //Get Create-post page
-router.get("/create-post",(req,res)=> {
+router.get("/create-post", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/create-post.html"));
 });
 
