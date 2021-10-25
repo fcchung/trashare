@@ -5,3 +5,8 @@
 a {
   color: #00b7ff;
 }
+
+#greet {
+  display: flex;
+  align-items: center;
+}

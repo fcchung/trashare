@@ -19,7 +19,8 @@ router.get("/register", function (req, res) {
 
 // Get all posts page
 router.get("/posts", (req, res) => {
-  res.send("Main post page");
+  res.sendFile(path.join(__dirname, "../public/posts.html"));
+  // res.send("Main post page");
 });
 
 // Get post with id
