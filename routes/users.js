@@ -24,19 +24,21 @@ let users = [
 
 // create new users
 router.post("/", (req, res) => {
-  console.log(req.body);
-  for (let user of users) {
-    if (user.email === req.body.email) {
-      res.status(500).send(JSON.stringify({ message: "Email already in use" }));
-    }
+  let data = {};
+  let statusCode = 200;
+  // for (let user of users) {
+  //   if (user.email === req.body.email) {
+  //     res.status(500).send(JSON.stringify({ message: "Email already in use" }));
+  //   }
+  // }
+  try {
+    users.push(req.body); // replace with db op
+    data.user = { firstName: req.body.firstName, lastName: req.body.lastName };
+  } catch (err) {
+    statusCode = 500;
+    data.message = err.message;
   }
-  users.push(req.body);
-  // res.send(`registering user: ${JSON.stringify(req.body)}`);
-  res.status(200).send(
-    JSON.stringify({
-      user: { firstName: req.body.firstName, lastName: req.body.lastName },
-    })
-  );
+  res.status(statusCode).send(JSON.stringify(data));
 });
 
 router.post("/is-email-available", (req, res) => {
@@ -49,24 +51,22 @@ router.post("/is-email-available", (req, res) => {
 
 // get user (login)
 router.post("/login", (req, res) => {
+  let data = {};
+  let statusCode = 200;
   let loginUser = users.filter((el) => {
     return el.email === req.body.email && el.password === req.body.password;
   });
   if (loginUser.length === 1) {
     let loggedIn = loginUser[0];
-    res.status(200).send(
-      JSON.stringify({
-        user: {
-          firstName: loggedIn.firstName,
-          lastName: loggedIn.lastName,
-        },
-      })
-    );
+    data.user = {
+      firstName: loggedIn.firstName,
+      lastName: loggedIn.lastName,
+    };
   } else {
-    res
-      .status(500)
-      .send({ message: "The email/password did not match our record" });
+    statusCode = 500;
+    data = { message: "The email/password did not match our record" };
   }
+  res.status(statusCode).send(JSON.stringify(data));
 });
 
 module.exports = router;
