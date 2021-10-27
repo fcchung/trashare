@@ -1,9 +1,10 @@
 (() => {
   let header = document.getElementById("header");
 
-  let user = null;
+  let user = JSON.parse(sessionStorage.getItem("user"));
   let loginSecion = user
-    ? `<div id="greet">Hi, ${user.username}</div><a class="nav-link" href="/sign-out">Sign out</a>`
+    ? `<div id="greet">Hi, ${user.firstName} ${user.lastName}</div>
+        <a class="nav-link" href="/" id="signOutLink">Sign out</a>`
     : `<ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="/login">Sign in</a>
@@ -40,4 +41,13 @@
         </div>
       </div>
     </nav>`;
+})();
+
+(() => {
+  let signOut = document.getElementById("signOutLink");
+  if (signOut) {
+    signOut.addEventListener("click", () => {
+      sessionStorage.setItem("user", null);
+    });
+  }
 })();

@@ -25,7 +25,12 @@
       <div class="container border position-relative">
         <h1>Create account</h1>
         <div id="input-div">
-          <form action="/api/users" method="POST" autocomplete="on">
+          <form
+            id="signUpForm"
+            action="/api/users"
+            method="POST"
+            autocomplete="on"
+          >
             <div class="row">
               <div>
                 <label>First Name</label>
@@ -37,6 +42,7 @@
                   tabindex="0"
                   required
                 />
+                <div class="invalid-feedback">Please input a first name</div>
               </div>
               <div>
                 <label>Last Name</label>
@@ -47,6 +53,7 @@
                   name="lastName"
                   required
                 />
+                <div class="invalid-feedback">Please input a last name</div>
               </div>
             </div>
             <div class="row">
@@ -54,11 +61,15 @@
                 <label>Email</label>
                 <input
                   class="form-control"
+                  id="email"
                   type="email"
                   maxlength="64"
                   name="email"
                   required
                 />
+                <div id="emailErrorMsg" class="invalid-feedback">
+                  Please input an email
+                </div>
               </div>
             </div>
             <div class="row">
@@ -66,17 +77,18 @@
                 <label>Password</label>
                 <input
                   class="form-control"
-                  id="password-input"
+                  id="passwordInput"
                   type="password"
                   maxlength="64"
                   name="password"
                   required
                 />
+                <div class="invalid-feedback">Please input a password</div>
               </div>
               <div>
                 <input
                   class="form-check-input"
-                  id="password-toggler"
+                  id="passwordToggler"
                   type="checkbox"
                 />
                 <label for="password-toggler">Show Password</label>
@@ -84,9 +96,9 @@
             </div>
             <div class="row mt-2">
               <button
-                type="submit"
+                type="button"
                 class="btn btn-primary btn-md mt-2"
-                id="create-button"
+                id="signUpButton"
               >
                 Create Trashare Account
               </button>
@@ -101,6 +113,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./scripts/header.js"></script>
-    <script src="./scripts/registration.js"></script>
+    <script type="module" src="./scripts/utils.js"></script>
+    <script type="module" src="./scripts/registration.js"></script>
   </body>
 </html>
