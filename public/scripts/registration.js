@@ -1,11 +1,77 @@
+import { debounce, validateEmail, registerPasswordToggler } from "./utils.js";
+
+registerPasswordToggler();
+
+let emailIsValid = true;
+let form = document.getElementById("signUpForm");
+
+// AJAX form submit
 (() => {
-  let passwordToggler = document.getElementById("password-toggler");
-  let passwordInput = document.getElementById("password-input");
-  passwordToggler.addEventListener("click", () => {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-    } else {
-      passwordInput.type = "password";
+  if (JSON.parse(sessionStorage.getItem("user"))) {
+    location.href = "/posts";
+  }
+
+  let loginButton = document.getElementById("signUpButton");
+  loginButton.addEventListener("click", async () => {
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
     }
+
+    let formData = new FormData(form);
+    let data = {};
+    formData.forEach((val, key) => {
+      data[key] = val;
+    });
+    let json = JSON.stringify(data);
+
+    let post = await fetch("/api/users", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: json,
+    });
+    if (post.ok) {
+      let result = await post.json();
+      sessionStorage.setItem("user", JSON.stringify(result.user));
+      location.href = "/posts";
+    }
+    // else {
+    //   let error = await post.json();
+    // }
   });
+})();
+
+// check email format and availability
+(() => {
+  let email = document.getElementById("email");
+  let errorMsg = document.getElementById("emailErrorMsg");
+  const checkAvailable = async () => {
+    form.classList.remove("was-validated");
+    if (!validateEmail(email.value)) {
+      emailIsValid = false;
+      email.classList.add("is-invalid");
+      errorMsg.innerText = "Email format incorrect";
+    } else {
+      let check = await fetch("/api/users/is-email-available", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.value }),
+      });
+      if (check.ok) {
+        let res = await check.json();
+        if (!res.isAvailable) {
+          emailIsValid = false;
+          email.classList.add("is-invalid");
+          errorMsg.innerText = "Email is already in use";
+        } else {
+          emailIsValid = true;
+        }
+      }
+    }
+    if (emailIsValid) {
+      email.classList.remove("is-invalid");
+      email.classList.add("is-valid");
+    }
+  };
+  email.onkeyup = debounce(checkAvailable, 1000);
 })();

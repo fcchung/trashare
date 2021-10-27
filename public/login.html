@@ -24,18 +24,30 @@
     <main>
       <div class="container border position-relative">
         <h1>Login</h1>
+
+        <div class="mb-2 p-2 rounded visually-hidden" id="loginErrorMsg"></div>
+
         <div id="input-div">
-          <form action="/api/users/login" method="POST" autocomplete="on">
+          <form
+            id="loginForm"
+            action="/api/users/login"
+            method="POST"
+            autocomplete="on"
+          >
             <div class="row">
               <div>
                 <label>Email</label>
                 <input
                   class="form-control"
+                  id="email"
                   type="email"
                   maxlength="64"
                   name="email"
                   required
                 />
+                <div id="emailErrorMsg" class="invalid-feedback">
+                  Please input email
+                </div>
               </div>
             </div>
             <div class="row">
@@ -43,27 +55,28 @@
                 <label>Password</label>
                 <input
                   class="form-control"
-                  id="password-input"
+                  id="passwordInput"
                   type="password"
                   maxlength="64"
                   name="password"
                   required
                 />
+                <div class="invalid-feedback">Please input password</div>
               </div>
               <div>
                 <input
                   class="form-check-input"
-                  id="password-toggler"
+                  id="passwordToggler"
                   type="checkbox"
                 />
                 Show Password
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-2 mb-2">
               <button
-                type="submit"
+                type="button"
                 class="btn btn-primary btn-md mt-2"
-                id="create-button"
+                id="loginButton"
               >
                 Login
               </button>
@@ -78,6 +91,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./scripts/header.js"></script>
-    <script src="./scripts/registration.js"></script>
+    <script type="module" src="./scripts/utils.js"></script>
+    <script type="module" src="./scripts/login.js"></script>
   </body>
 </html>

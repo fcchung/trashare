@@ -1,0 +1,61 @@
+import { validateEmail, registerPasswordToggler } from "./utils.js";
+
+registerPasswordToggler();
+let form = document.getElementById("loginForm");
+
+// AJAX form submit
+(() => {
+  if (JSON.parse(sessionStorage.getItem("user"))) {
+    location.href = "/posts";
+  }
+
+  let loginButton = document.getElementById("loginButton");
+  let errorMsg = document.getElementById("loginErrorMsg");
+
+  loginButton.addEventListener("click", async () => {
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+    let formData = new FormData(form);
+    let data = {};
+    formData.forEach((val, key) => {
+      data[key] = val;
+    });
+    let json = JSON.stringify(data);
+
+    let post = await fetch("/api/users/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: json,
+    });
+    if (post.ok) {
+      let result = await post.json();
+
+      sessionStorage.setItem("user", JSON.stringify(result.user));
+      window.history.back();
+    } else {
+      let error = await post.json();
+      errorMsg.classList.remove("visually-hidden");
+      errorMsg.innerText = error.message;
+    }
+  });
+})();
+
+// check email format
+(() => {
+  let email = document.getElementById("email");
+  let errorMsg = document.getElementById("emailErrorMsg");
+  const checkFormat = async () => {
+    if (email.value === "") {
+      email.classList.add("is-invalid");
+      errorMsg.innerText = "Please input email";
+    } else if (!validateEmail(email.value)) {
+      email.classList.add("is-invalid");
+      errorMsg.innerText = "Email format incorrect";
+    } else {
+      email.classList.remove("is-invalid");
+    }
+  };
+  email.onkeyup = checkFormat;
+})();
