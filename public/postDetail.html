@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post</title>
+    <!-- Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+      crossorigin="anonymous"
+    />
+    <!--Post style-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./stylesheets/createPost.css"
+    />
+  </head>
+  <body>
+    <header id="header" class="sticky-top"></header>
+    <main>
+      <div class="container">
+        <h1 class="mb-3">Post 1</h1>
+        <div>
+          <div
+            id="postImageCarousel"
+            class="carousel slide w-50"
+            data-bs-ride="carousel"
+            data-bs-interval="false"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#postImageCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#postImageCarousel"
+                data-bs-slide-to="1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#postImageCarousel"
+                data-bs-slide-to="2"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/images/testimg1.png" alt="" class="d-block w-100" />
+              </div>
+              <div class="carousel-item">
+                <img src="/images/testimg2.png" alt="" class="d-block w-100" />
+              </div>
+              <div class="carousel-item">
+                <img src="/images/testimg3.png" alt="" class="d-block w-100" />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#postImageCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#postImageCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <div>Location</div>
+        </div>
+        <div class="border">
+          <label> Description </label>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ab
+            similique eius. Maxime fuga tempore eum perferendis ipsum temporibus
+            consectetur molestias molestiae voluptate, voluptatem incidunt
+            maiores! Expedita ipsum porro non.
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div>posted: time###</div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/header.js"></script>
+    <script src="./scripts/postDetail.js"></script>
+  </body>
+</html>

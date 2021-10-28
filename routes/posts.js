@@ -3,6 +3,30 @@ const multer = require("multer");
 const path = require("path");
 const router = express.Router();
 
+//Sample post
+let postStub = [
+  {
+    id: "001",
+    title: "post1",
+    description: "Doe",
+    images: ["../public/images/testimg1.png", "../public/images/testimg2.png"],
+    address: "123",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94111",
+  },
+  {
+    id: "002",
+    title: "post2",
+    description: "post number 2",
+    images: "../public/images/testimg1.png3",
+    address: "55555",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94112",
+  },
+];
+
 // setup multer for pass through upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -14,10 +14,10 @@ const app = express();
 
 // mongodb setup
 const uri = process.env.DB_URL;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 // client.connect(async (err) => {
 //   // const collection = client.db("trashare").collection("users");
 //   // let res = await collection.insertOne({ email: "123@1.com" });
@@ -25,8 +25,8 @@ const client = new MongoClient(uri, {
 // });
 
 // view engine setup
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "jade");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
