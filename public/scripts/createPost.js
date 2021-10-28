@@ -23,3 +23,42 @@
     }
   };
 })();
+
+function initGoogle() {
+  let location = {
+    lat: 37.773972,
+    lng: -122.431297,
+  };
+  let options = {
+    center: location,
+    zoom: 10,
+  };
+  let map = new google.maps.Map(document.getElementById("map"), options);
+
+  let autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("inputLocation"),
+    {
+      types: ["geocode"],
+      componentRestrictions: { country: ["us"] },
+      fields: ["geometry", "name"],
+    }
+  );
+
+  autocomplete.addListener("place_changed", () => {
+    let place = autocomplete.getPlace();
+
+    let options = {
+      center: place.geometry.location,
+      zoom: 10,
+    };
+    map = new google.maps.Map(document.getElementById("map"), options);
+
+    new google.maps.Circle({
+      center: place.geometry.location,
+      radius: 5000,
+      fillColor: "#FFB6C1",
+      fillOpacity: 0.35,
+      map: map,
+    });
+  });
+}
