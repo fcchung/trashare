@@ -2,30 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const router = express.Router();
-
-//Sample post
-let postStub = [
-  {
-    id: "001",
-    title: "post1",
-    description: "Doe",
-    images: ["../public/images/testimg1.png", "../public/images/testimg2.png"],
-    address: "123",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94111",
-  },
-  {
-    id: "002",
-    title: "post2",
-    description: "post number 2",
-    images: "../public/images/testimg1.png3",
-    address: "55555",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94112",
-  },
-];
+const postDB = require("../db/postModel.js");
 
 // setup multer for pass through upload
 const storage = multer.diskStorage({
@@ -45,17 +22,32 @@ router.get("/", (req, res) => {
 });
 
 // Create new Post
-router.post("/", upload.array("images"), (req, res) => {
-  res.send(
-    `Creating new post: ${JSON.stringify(req.body)} with ${req.files.map((f) =>
-      JSON.stringify(f)
-    )} images`
-  );
+router.post("/", upload.array("images"), async (req, res) => {
+  let data = req.body;
+  //data.createdAt = new Date().getTime();
+
+  //trying to mimic how prof post to database in his example
+  const dbRes = await postDB.createPost(data);
+  res.redirect("/");
+  // res.send(
+  //   `Creating new post: ${JSON.stringify(data)} with ${req.files.map((f) =>
+  //     JSON.stringify(f)
+  //   )} images`
+  // );
 });
 
 // Get post with id
 router.get("/:id", (req, res) => {
-  res.send(`Reading post with id: ${req.params.id}`);
+  const postStub = [
+    {
+      id: "001",
+      title: "Test1",
+      description: "test post #1",
+      createdAt: Date.now(),
+      location: "lat lng",
+    },
+  ];
+  res.send(JSON.stringify(postStub[0]));
 });
 
 // Delete post with id

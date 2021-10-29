@@ -25,6 +25,7 @@
 })();
 
 function initGoogle() {
+  const google = window.google;
   let location = {
     lat: 37.773972,
     lng: -122.431297,
@@ -56,6 +57,7 @@ function initGoogle() {
     new google.maps.Circle({
       center: place.geometry.location,
       radius: 5000,
+      strokeWeight: 0,
       fillColor: "#FFB6C1",
       fillOpacity: 0.35,
       map: map,
