@@ -20,39 +20,20 @@
 
     <main>
       <div class="container">
-        <h1>See what is avaiable</h1>
+        <h1>Avaiable near by</h1>
         <hr />
-        <div class="row p-3">
-          <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="card sm-4">
-              <div class="card-header">
-                <h2>post 1</h2>
-              </div>
-              <!-- <div style="max-height: 20em; overflow-y: hidden"> -->
-              <img
-                src="https://fengruigan-portfolio.s3.us-west-2.amazonaws.com/profile_picture.jpeg"
-                alt=""
-                class="card-img-top"
-              />
-              <!-- </div> -->
-              <div class="card-body" style="max-lines: 3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ab
-                similique eius. Maxime fuga tempore eum perferendis ipsum
-                temporibus consectetur molestias molestiae voluptate, voluptatem
-                incidunt maiores! Expedita ipsum porro non.
-              </div>
+        <ul class="post-list rows" id="searchResults">
+          <li class="row">
+            <div class="testclass">
+              <time>Loading...</time>
+              <h2>
+                <a herf="" data-id="" class="result-title"
+                  >Loading Posts.....</a
+                >
+              </h2>
             </div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="card mb-4">post 2</div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="card mb-4">post 3</div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-lg-4">
-            <div class="card mb-4">post 4</div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </main>
 
@@ -61,6 +42,7 @@
       integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
       crossorigin="anonymous"
     ></script>
+    <script src="./scripts/postList.js"></script>
     <script src="./scripts/header.js"></script>
   </body>
 </html>
