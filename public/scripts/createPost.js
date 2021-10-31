@@ -6,6 +6,7 @@
   }
 })();
 
+// preview images below file input
 (() => {
   let file = document.getElementById("uploadImage");
   let previewDiv = document.getElementById("imagePreview");
@@ -72,3 +73,29 @@ function initGoogle() {
     });
   });
 }
+
+// submit form
+(() => {
+  let form = document.getElementById("createPostForm");
+  let submitButton = document.getElementById("submitButton");
+
+  form.addEventListener("submit", async (event) => {
+    submitButton.classList.add("disabled");
+    event.preventDefault();
+    let formData = new FormData(form);
+    let user = JSON.parse(sessionStorage.getItem("user"));
+
+    formData.append("userEmail", user.email);
+
+    let res = await fetch("/api/posts", {
+      method: "post",
+      body: formData,
+    });
+
+    if (res.ok) {
+      let json = await res.json();
+      location.href = `/posts/${json.postId}`;
+    }
+    submitButton.classList.remove("disabled");
+  });
+})();

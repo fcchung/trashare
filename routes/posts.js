@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const router = express.Router();
-const postDB = require("../db/postModel.js");
+// const postDB = require("../db/postModel.js");
 
 // setup multer for pass through upload
 const storage = multer.diskStorage({
@@ -26,14 +26,20 @@ router.post("/", upload.array("images"), async (req, res) => {
   let data = req.body;
   //data.createdAt = new Date().getTime();
 
+  console.log(
+    `Creating new post: ${JSON.stringify(data)} with ${req.files.map((f) =>
+      JSON.stringify(f)
+    )} images`
+  );
   //trying to mimic how prof post to database in his example
-  const dbRes = await postDB.createPost(data);
-  res.redirect("/");
+  // const dbRes = await postDB.createPost(data);
+  // res.redirect("/");
   // res.send(
   //   `Creating new post: ${JSON.stringify(data)} with ${req.files.map((f) =>
   //     JSON.stringify(f)
   //   )} images`
   // );
+  res.status(200).send(JSON.stringify({ postId: "123" }));
 });
 
 // Get post with id
