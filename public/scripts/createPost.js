@@ -1,4 +1,12 @@
 (() => {
+  // redirect if no active user
+  let user = JSON.parse(sessionStorage.getItem("user"));
+  if (!user) {
+    location.href = "./posts";
+  }
+})();
+
+(() => {
   let file = document.getElementById("uploadImage");
   let previewDiv = document.getElementById("imagePreview");
   file.onchange = () => {

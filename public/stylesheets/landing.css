@@ -1,0 +1,39 @@
+main {
+  margin-top: 5em;
+}
+
+#brand {
+  display: flex;
+  justify-content: center;
+}
+
+#brand h1 {
+  font-size: 5em;
+}
+
+#brand i {
+  align-self: center;
+  font-size: 3em;
+  margin-left: 0.25em;
+}
+
+#quote {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5em;
+}
+
+#quote .fa-quote-left {
+  align-self: flex-start;
+  margin-right: 0.25em;
+}
+
+#quote-words {
+  padding-top: 0.25em;
+}
+
+#quote .fa-quote-right {
+  align-self: flex-end;
+  padding-top: 1em;
+  margin-left: 0.25em;
+}
