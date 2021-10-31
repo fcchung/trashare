@@ -1,38 +1,37 @@
-// this should always return a ready to operate mongodb client
-// it should connect if no connection is made
-const { MongoClient } = require("mongodb");
-require("dotenv").config();
+const databaseConnection = require("./databaseConnection");
 
-const uri = process.env.DB_URL;
-// let client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   keepAlive: true,
-// });
-
-async function getMongoDB() {
-  this.db = null;
-  if (!this.db) {
-    let client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      keepAlive: true,
-    });
-
-    let connection = await client.connect();
-    this.db = connection.db("trashare");
-  }
-
-  return this;
-}
-
-let mongo = new getMongoDB();
-
-const dbOp = async (db) => {
-  // console.log(connection);
-  db.collection("users").insertOne({ _id: "223", email: "1@1.com" });
+const create = async (collectionName, data) => {
+  const db = await databaseConnection();
+  const collection = db.collection(collectionName);
+  await collection.insertOne(data);
 };
 
-dbOp(mongo);
+const read = async (collectionName, query) => {
+  if (typeof query !== "object") {
+    throw new TypeError("Query Expression is not an object");
+  }
+  const db = await databaseConnection();
+  const collection = db.collection(collectionName);
+  let res = await collection.find(query).toArray();
+  return res;
+};
 
-// module.exports = getMongoDBConnection;
+const update = async (collectionName, filter) => {
+  if (typeof filter !== "object") {
+    throw new TypeError("Filter Expression is not an object");
+  }
+  const db = await databaseConnection();
+  const collection = db.collection(collectionName);
+  await collection.updateOne(filter);
+};
+
+const destroy = async (collectionName, filter) => {
+  if (typeof filter !== "object") {
+    throw new TypeError("Query Expression is not an object");
+  }
+  const db = await databaseConnection();
+  const collection = db.collection(collectionName);
+  await collection.deleteOne(filter);
+};
+
+module.exports = { create, read, update, destroy };
