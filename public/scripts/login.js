@@ -13,6 +13,8 @@ let form = document.getElementById("loginForm");
   let errorMsg = document.getElementById("loginErrorMsg");
 
   loginButton.addEventListener("click", async () => {
+    loginButton.classList.add("disabled");
+
     if (!form.checkValidity()) {
       form.classList.add("was-validated");
       return;
@@ -39,6 +41,7 @@ let form = document.getElementById("loginForm");
       errorMsg.classList.remove("visually-hidden");
       errorMsg.innerText = error.message;
     }
+    loginButton.classList.remove("disabled");
   });
 })();
 

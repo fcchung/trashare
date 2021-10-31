@@ -2,7 +2,7 @@ import { debounce, validateEmail, registerPasswordToggler } from "./utils.js";
 
 registerPasswordToggler();
 
-let emailIsValid = true;
+let emailIsValid = false;
 let form = document.getElementById("signUpForm");
 
 // AJAX form submit
@@ -11,10 +11,14 @@ let form = document.getElementById("signUpForm");
     location.href = "/posts";
   }
 
-  let loginButton = document.getElementById("signUpButton");
-  loginButton.addEventListener("click", async () => {
+  let signUpButton = document.getElementById("signUpButton");
+  signUpButton.addEventListener("click", async () => {
+    signUpButton.classList.add("disabled");
     if (!form.checkValidity()) {
       form.classList.add("was-validated");
+      return;
+    }
+    if (!emailIsValid) {
       return;
     }
 
@@ -35,6 +39,7 @@ let form = document.getElementById("signUpForm");
       sessionStorage.setItem("user", JSON.stringify(result.user));
       location.href = "/posts";
     }
+    signUpButton.classList.remove("disabled");
     // else {
     //   let error = await post.json();
     // }
@@ -48,7 +53,6 @@ let form = document.getElementById("signUpForm");
   const checkAvailable = async () => {
     form.classList.remove("was-validated");
     if (!validateEmail(email.value)) {
-      emailIsValid = false;
       email.classList.add("is-invalid");
       errorMsg.innerText = "Email format incorrect";
     } else {
@@ -60,7 +64,6 @@ let form = document.getElementById("signUpForm");
       if (check.ok) {
         let res = await check.json();
         if (!res.isAvailable) {
-          emailIsValid = false;
           email.classList.add("is-invalid");
           errorMsg.innerText = "Email is already in use";
         } else {
@@ -72,6 +75,9 @@ let form = document.getElementById("signUpForm");
       email.classList.remove("is-invalid");
       email.classList.add("is-valid");
     }
+  };
+  email.onkeydown = () => {
+    emailIsValid = false;
   };
   email.onkeyup = debounce(checkAvailable, 1000);
 })();
