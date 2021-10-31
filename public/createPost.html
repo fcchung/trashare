@@ -12,12 +12,8 @@
       crossorigin="anonymous"
     />
     <!--Post style-->
-    <link rel="stylesheet" href="./stylesheets/style.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./stylesheets/createPost.css"
-    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/createPost.css" />
   </head>
   <body>
     <header id="header" class="sticky-top"></header>
@@ -25,7 +21,12 @@
       <div class="container">
         <h1 class="mb-3">New post</h1>
         <div class="border">
-          <form action="/api/posts" method="POST" enctype="multipart/form-data">
+          <form
+            id="createPostForm"
+            action="/api/posts"
+            method="POST"
+            enctype="multipart/form-data"
+          >
             <div class="form-group">
               <label for="inputTitle"> Post Title </label>
               <input
@@ -94,7 +95,7 @@
       integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
       crossorigin="anonymous"
     ></script>
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/createPost.js"></script>
+    <script src="/scripts/header.js"></script>
+    <script src="/scripts/createPost.js"></script>
   </body>
 </html>
