@@ -4,7 +4,7 @@ const path = require("path");
 
 // GET landing page.
 router.get("/", (req, res) => {
-  res.send("Landing page");
+  res.sendFile(path.join(__dirname, "../public/landing.html"));
 });
 
 // Get login page
