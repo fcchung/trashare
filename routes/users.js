@@ -33,7 +33,11 @@ router.post("/", (req, res) => {
   // }
   try {
     users.push(req.body); // replace with db op
-    data.user = { firstName: req.body.firstName, lastName: req.body.lastName };
+    data.user = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+    };
   } catch (err) {
     statusCode = 500;
     data.message = err.message;
@@ -61,6 +65,7 @@ router.post("/login", (req, res) => {
     data.user = {
       firstName: loggedIn.firstName,
       lastName: loggedIn.lastName,
+      email: loggedIn.email,
     };
   } else {
     statusCode = 500;
