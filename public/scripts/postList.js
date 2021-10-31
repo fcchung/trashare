@@ -13,7 +13,7 @@ function loadPosts() {
     containerDiv.className = "titleContainer";
     containerDiv.appendChild(time);
     anch.className = "result-title";
-    anch.herf = " ";
+    anch.href = "/posts/00" + i;
     anch.innerHTML = "Sample / Test Title #" + i;
     title.appendChild(anch);
 
