@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const { MongoClient } = require("mongodb");
+// const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
 const viewRouter = require("./routes/views");
@@ -13,16 +13,16 @@ const postsRouter = require("./routes/posts");
 const app = express();
 
 // mongodb setup
-const uri = process.env.DB_URL;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-client.connect(async (err) => {
-  // const collection = client.db("trashare").collection("users");
-  // let res = await collection.insertOne({ email: "123@1.com" });
-  client.close();
-});
+// const uri = process.env.DB_URL;
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// client.connect(async (err) => {
+//   // const collection = client.db("trashare").collection("users");
+//   // let res = await collection.insertOne({ email: "123@1.com" });
+//   client.close();
+// });
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

@@ -4,9 +4,9 @@ async function loadImages() {
   postImages.innerHTML = "";
 
   let images = [
-    ["./images/testimg1.png"],
-    ["./images/testimg2.png"],
-    ["./images/testimg3.png"],
+    ["/images/testimg1.png"],
+    ["/images/testimg2.png"],
+    ["/images/testimg3.png"],
   ];
   // try {
   //   const res = await fetch("/images");
