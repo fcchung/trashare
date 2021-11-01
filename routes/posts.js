@@ -2,7 +2,9 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const router = express.Router();
-// const postDB = require("../db/postModel.js");
+const databaseManager = require("../db/databaseManager");
+const imageUpload = require("../utils/s3UploadUtil");
+const uuid = require("uuid").v4;
 
 // setup multer for pass through upload
 const storage = multer.diskStorage({
@@ -10,8 +12,8 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../uploads"));
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, `${uniqueSuffix}.${file.originalname.split(".")[1]}`);
+    const uniquePrefix = uuid();
+    cb(null, `${uniquePrefix}.${file.originalname.split(".")[1]}`);
   },
 });
 const upload = multer({ storage: storage });
@@ -23,37 +25,38 @@ router.get("/", (req, res) => {
 
 // Create new Post
 router.post("/", upload.array("images"), async (req, res) => {
-  let data = req.body;
-  //data.createdAt = new Date().getTime();
+  let statusCode = 200;
+  let postId = uuid();
+  let data = { ...req.body, _id: postId };
 
-  console.log(
-    `Creating new post: ${JSON.stringify(data)} with ${req.files.map((f) =>
-      JSON.stringify(f)
-    )} images`
-  );
-  //trying to mimic how prof post to database in his example
-  // const dbRes = await postDB.createPost(data);
-  // res.redirect("/");
-  // res.send(
-  //   `Creating new post: ${JSON.stringify(data)} with ${req.files.map((f) =>
-  //     JSON.stringify(f)
-  //   )} images`
-  // );
-  res.status(200).send(JSON.stringify({ postId: "123" }));
+  let files = req.files.map((ele) => {
+    return {
+      fileName: ele.filename,
+      fileKey: postId + "/" + ele.filename,
+      mimeType: ele.mimetype,
+    };
+  });
+
+  data.images = [];
+  files.forEach((ele) => {
+    imageUpload(ele.fileName, ele.fileKey, ele.mimeType);
+    data.images.push(
+      "https//trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
+    );
+  });
+
+  try {
+    await databaseManager.create("posts", data);
+  } catch (err) {
+    statusCode = 500;
+    data.message = err.message;
+  }
+  res.status(statusCode).send(JSON.stringify({ postId: postId }));
 });
 
 // Get post with id
 router.get("/:id", (req, res) => {
-  const postStub = [
-    {
-      id: "001",
-      title: "Test1",
-      description: "test post #1",
-      createdAt: Date.now(),
-      location: "lat lng",
-    },
-  ];
-  res.send(JSON.stringify(postStub[0]));
+  res.send(JSON.stringify(req));
 });
 
 // Delete post with id
