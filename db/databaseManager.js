@@ -1,8 +1,13 @@
-const databaseConnection = require("./databaseConnection");
+// const { MongoClient } = require("mongodb");
+const ConnectionPool = require("./ConnectionPool");
+
+const getDBCollection = async (collectionName) => {
+  const conn = await ConnectionPool();
+  return conn.getDB().collection(collectionName);
+};
 
 const create = async (collectionName, data) => {
-  const db = await databaseConnection();
-  const collection = db.collection(collectionName);
+  const collection = await getDBCollection(collectionName);
   await collection.insertOne(data);
 };
 
@@ -10,8 +15,7 @@ const read = async (collectionName, query) => {
   if (typeof query !== "object") {
     throw new TypeError("Query Expression is not an object");
   }
-  const db = await databaseConnection();
-  const collection = db.collection(collectionName);
+  const collection = await getDBCollection(collectionName);
   let res = await collection.find(query).toArray();
   return res;
 };
@@ -20,8 +24,7 @@ const update = async (collectionName, filter) => {
   if (typeof filter !== "object") {
     throw new TypeError("Filter Expression is not an object");
   }
-  const db = await databaseConnection();
-  const collection = db.collection(collectionName);
+  const collection = await getDBCollection(collectionName);
   await collection.updateOne(filter);
 };
 
@@ -29,8 +32,7 @@ const destroy = async (collectionName, filter) => {
   if (typeof filter !== "object") {
     throw new TypeError("Query Expression is not an object");
   }
-  const db = await databaseConnection();
-  const collection = db.collection(collectionName);
+  const collection = await getDBCollection(collectionName);
   await collection.deleteOne(filter);
 };
 
