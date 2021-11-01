@@ -4,7 +4,6 @@ const databaseManager = require("../db/databaseManager");
 
 // create new users
 router.post("/", async (req, res) => {
-  // let db = await databaseConnection();
   let data = {};
   let userObject = {
     _id: req.body.email,
@@ -13,13 +12,7 @@ router.post("/", async (req, res) => {
     password: req.body.password,
   };
   let statusCode = 200;
-  // for (let user of users) {
-  //   if (user.email === req.body.email) {
-  //     res.status(500).send(JSON.stringify({ message: "Email already in use" }));
-  //   }
-  // }
   try {
-    // users.push(req.body); // replace with db op
     await databaseManager.create("users", userObject);
     data.user = {
       firstName: req.body.firstName,
@@ -34,16 +27,12 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/is-email-available", async (req, res) => {
-  // let db = await databaseConnection();
   let email = req.body.email;
   let statusCode = 200;
   let data = {};
   try {
-    let users = await databaseManager.read("users", {});
-    let available = users.every((user) => {
-      return user._id !== email;
-    });
-    data.isAvailable = available;
+    let users = await databaseManager.read("users", { _id: email });
+    data.isAvailable = users.length === 0;
   } catch (err) {
     statusCode = 500;
     data.message = err.message;
@@ -53,7 +42,6 @@ router.post("/is-email-available", async (req, res) => {
 
 // get user (login)
 router.post("/login", async (req, res) => {
-  // let db = await databaseConnection();
   let data = {};
   let statusCode = 200;
 
