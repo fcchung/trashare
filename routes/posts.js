@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require("multer");
-const path = require("path");
+// const path = require("path");
 const router = express.Router();
 const databaseManager = require("../db/databaseManager");
 const imageUpload = require("../utils/s3UploadUtil");
@@ -9,7 +9,7 @@ const uuid = require("uuid").v4;
 // setup multer for pass through upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads"));
+    cb(null, "./uploads");
   },
   filename: (req, file, cb) => {
     const uniquePrefix = uuid();
@@ -32,14 +32,14 @@ router.post("/", upload.array("images"), async (req, res) => {
   let files = req.files.map((ele) => {
     return {
       fileName: ele.filename,
-      fileKey: postId + "/" + ele.filename,
+      fileKey: `${postId}/${ele.filename}`,
       mimeType: ele.mimetype,
     };
   });
 
   data.images = [];
   files.forEach((ele) => {
-    imageUpload(ele.fileName, ele.fileKey, ele.mimeType);
+    imageUpload(`./uploads/${ele.fileName}`, ele.fileKey, ele.mimeType);
     data.images.push(
       "https//trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
     );
