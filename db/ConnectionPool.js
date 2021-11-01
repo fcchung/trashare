@@ -18,7 +18,7 @@ ConnectionPool.prototype.connect = async function (dbName) {
   if (ConnectionPool.isConnected) {
     return;
   }
-  console.log("Establishing connection to db");
+  // console.log("Establishing connection to db");
   if (ConnectionPool.client === null) {
     ConnectionPool.client = new MongoClient(uri, {
       useNewUrlParser: true,
