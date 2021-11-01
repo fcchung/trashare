@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
       data.user = {
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.email,
+        email: user._id,
       };
     } else {
       statusCode = 500;
