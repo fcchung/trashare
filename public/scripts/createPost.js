@@ -86,6 +86,7 @@ function initGoogle() {
     let user = JSON.parse(sessionStorage.getItem("user"));
 
     formData.append("userEmail", user.email);
+    formData.append("createdAt", new Date().getTime());
 
     let res = await fetch("/api/posts", {
       method: "post",
