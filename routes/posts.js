@@ -63,8 +63,17 @@ router.post("/", upload.array("images"), async (req, res) => {
 });
 
 // Get post with id
-router.get("/:id", (req, res) => {
-  res.send(JSON.stringify(req));
+router.get("/:id", async (req, res) => {
+  let data;
+  try {
+    data = await databaseManager.read("posts", { _id : req.params.id});
+
+  } catch (err) {
+    statusCode = 500
+    res.send(err);
+  }
+  res.send(JSON.stringify(data));
+
 });
 
 // Delete post with id

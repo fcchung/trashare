@@ -1,22 +1,29 @@
-/////////Load photo to carousel////////////
-const postImages = document.querySelector(".carousel-inner");
-async function loadImages() {
-  postImages.innerHTML = "";
+let geoloc;
 
-  let images = [
-    ["/images/testimg1.png"],
-    ["/images/testimg2.png"],
-    ["/images/testimg3.png"],
-  ];
-  // try {
-  //   const res = await fetch("/images");
-  //   if (!res.ok) {
-  //     throw new Error("Error: " + res.status);
-  //   }
-  //   images = await res.json();
-  // } catch (e) {
-  //   postImages.innerHTML = e.msg;
-  // }
+(async () => {
+  let url = location.href;
+  let id = url.substring(url.lastIndexOf('/') + 1);
+
+  let posts = await fetch("/api/posts/"+ id);
+  let datas = await posts.json();
+
+  if (posts.ok){
+  
+  const title = document.querySelector("h1");
+  const description = document.querySelector("#description");
+  const createdAt = document.querySelector("#createdAt");
+  data = datas[0];
+
+  title.innerHTML = data.title;
+  description.innerHTML = data.description;
+  createdAt.innerHTML = data.createdAt;
+  geoloc = data.location;
+
+  console.log()
+/////////Load photo to carousel////////////
+  const postImages = document.querySelector(".carousel-inner");
+  postImages.innerHTML = "";
+  let images = data.images;
 
   for (let img of images) {
     const divI = document.createElement("div");
@@ -30,39 +37,44 @@ async function loadImages() {
     imgEle.src = img;
     divI.appendChild(imgEle);
     postImages.appendChild(divI);
-  }
-}
+  };
+  };
+  
+})();
 
 ///////////load google map lcation/////////////
 
 function initGoogle() {
-  const google = window.google;
-  let location = {
-    //this will be the location from database
-    lat: 37.773972,
-    lng: -122.431297,
-  };
-  let options = {
-    center: location,
-    zoom: 10,
-  };
-  let map = new google.maps.Map(document.getElementById("map"), options);
 
-  new google.maps.Circle({
-    center: location,
-    radius: 5000,
-    strokeWeight: 0,
-    fillColor: "#FFB6C1",
-    fillOpacity: 0.35,
-    map: map,
-  });
+  let interval = setInterval(() => {
+    if (geoloc) {
+      callback()
+      clearInterval(interval)
+    }
+  }, 1000)
+
+
+  console.log(geoloc);
+  const callback = () => {
+    const google = window.google;
+    let center = {
+      lat: (Number)geoloc[0],
+      lng: (Number)geoloc[1]
+    };
+
+    let options = {
+      center: center,
+      zoom: 10,
+    };
+    let map = new google.maps.Map(document.getElementById("map"), options);
+
+    new google.maps.Circle({
+      center: center,
+      radius: 5000,
+      strokeWeight: 0,
+      fillColor: "#FFB6C1",
+      fillOpacity: 0.35,
+      map: map,
+    });
+  }
 }
-////////////////////////
-async function getPost() {
-  let postid = 1;
-  const res = await fetch("/api/posts/" + postid);
-}
-
-getPost();
-
-loadImages();
