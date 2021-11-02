@@ -5,6 +5,7 @@ const router = express.Router();
 const databaseManager = require("../db/databaseManager");
 const imageUpload = require("../utils/s3UploadUtil");
 const uuid = require("uuid").v4;
+let statusCode = 200;
 
 // setup multer for pass through upload
 const storage = multer.diskStorage({
@@ -18,14 +19,21 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
 // Read all posts
-router.get("/", (req, res) => {
-  res.send("View all posts");
+router.get("/", async (req, res) => {
+  let data;
+  try {
+    data = await databaseManager.read("posts", {});
+  } catch (err) {
+    statusCode = 500;
+    res.send(err);
+  }
+  res.send(JSON.stringify(data));
 });
 
 // Create new Post
 router.post("/", upload.array("images"), async (req, res) => {
-  let statusCode = 200;
   let postId = uuid();
   let data = { ...req.body, _id: postId };
 

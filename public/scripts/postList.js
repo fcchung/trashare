@@ -1,7 +1,14 @@
-function loadPosts() {
+(async () => {
+  let posts = await fetch("/api/posts", {
+    method: "get",
+  });
+
+  let datas = await posts.json();
+  console.log(datas)
+
   const postList = document.querySelector(".post-list");
   postList.innerHTML = "";
-  for (let i = 1; i < 11; i++) {
+  datas.forEach(data => {
     const list = document.createElement("li");
     const containerDiv = document.createElement("div");
     const time = document.createElement("time");
@@ -9,18 +16,17 @@ function loadPosts() {
     const anch = document.createElement("a");
 
     list.className = "row";
-    time.innerHTML = "Oct 29 ";
+    time.innerHTML = data.createdAt;
     containerDiv.className = "titleContainer";
     containerDiv.appendChild(time);
     anch.className = "result-title";
-    anch.href = "/posts/00" + i;
-    anch.innerHTML = "Sample / Test Title #" + i;
+    anch.href = "/posts/"+data._id;
+    anch.innerHTML = data.title;
     title.appendChild(anch);
 
     containerDiv.appendChild(title);
     list.appendChild(containerDiv);
     postList.appendChild(list);
-  }
-}
-
-loadPosts();
+    
+  }); 
+})();

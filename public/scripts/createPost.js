@@ -33,6 +33,8 @@
   };
 })();
 
+let geoLocation;
+
 function initGoogle() {
   const google = window.google;
   let location = {
@@ -56,7 +58,7 @@ function initGoogle() {
 
   autocomplete.addListener("place_changed", () => {
     let place = autocomplete.getPlace();
-
+    geoLocation = place.geometry.location;
     let options = {
       center: place.geometry.location,
       zoom: 10,
@@ -87,6 +89,7 @@ function initGoogle() {
 
     formData.append("userEmail", user.email);
     formData.append("createdAt", new Date().getTime());
+    formData.append("location", geoLocation);
 
     let res = await fetch("/api/posts", {
       method: "post",
