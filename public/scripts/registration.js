@@ -9,7 +9,7 @@ let form = document.getElementById("signUpForm");
 // AJAX form submit
 (() => {
   if (JSON.parse(sessionStorage.getItem("user"))) {
-    location.href = "/posts";
+    window.location.replace("/posts");
   }
 
   let signUpButton = document.getElementById("signUpButton");
@@ -38,7 +38,7 @@ let form = document.getElementById("signUpForm");
     if (post.ok) {
       let result = await post.json();
       sessionStorage.setItem("user", JSON.stringify(result.user));
-      location.href = "/posts";
+      window.location.replace("/posts");
     }
     signUpButton.classList.remove("disabled");
     // else {

@@ -3,7 +3,7 @@
 (() => {
   let user = JSON.parse(sessionStorage.getItem("user"));
   if (!user) {
-    location.href = "/posts";
+    window.location.replace("/posts");
   }
 })();
 
