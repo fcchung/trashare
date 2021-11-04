@@ -1,3 +1,4 @@
+// Whole file by Fengrui Gan
 import { validateEmail, registerPasswordToggler } from "./utils.js";
 
 registerPasswordToggler();
@@ -6,7 +7,7 @@ let form = document.getElementById("loginForm");
 // AJAX form submit
 (() => {
   if (JSON.parse(sessionStorage.getItem("user"))) {
-    location.href = "/posts";
+    window.location.replace("/posts");
   }
 
   let loginButton = document.getElementById("loginButton");
@@ -35,7 +36,7 @@ let form = document.getElementById("loginForm");
       let result = await post.json();
 
       sessionStorage.setItem("user", JSON.stringify(result.user));
-      window.history.back();
+      window.location.replace("/posts");
     } else {
       let error = await post.json();
       errorMsg.classList.remove("visually-hidden");

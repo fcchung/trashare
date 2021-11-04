@@ -1,3 +1,4 @@
+// Whole file by Fengrui Gan
 /*
   this is a module pattern for mongodb client and database
   it should return a method to retrieve the same database instance

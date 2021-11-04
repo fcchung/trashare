@@ -1,4 +1,4 @@
-// const { MongoClient } = require("mongodb");
+// By Fengrui Gan and Felix Chung
 const ConnectionPool = require("./ConnectionPool");
 
 const getDBCollection = async (collectionName) => {

@@ -1,12 +1,12 @@
 const express = require("express");
 const multer = require("multer");
-// const path = require("path");
 const router = express.Router();
 const databaseManager = require("../db/databaseManager");
 const imageUpload = require("../utils/s3UploadUtil");
 const uuid = require("uuid").v4;
 let statusCode = 200;
 
+// Fengrui Gan
 // setup multer for pass through upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// Felix Chung for everything below
 // Read all posts
 router.get("/", async (req, res) => {
   let data;

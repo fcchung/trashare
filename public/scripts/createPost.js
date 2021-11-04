@@ -1,12 +1,14 @@
+// redirect if no active user
+// Fengrui Gan
 (() => {
-  // redirect if no active user
   let user = JSON.parse(sessionStorage.getItem("user"));
   if (!user) {
-    location.href = "./posts";
+    window.location.replace("/posts");
   }
 })();
 
 // preview images below file input
+// Fengrui Gan
 (() => {
   let file = document.getElementById("uploadImage");
   let previewDiv = document.getElementById("imagePreview");
@@ -33,6 +35,7 @@
   };
 })();
 
+// Felix Chung
 let geoLocation;
 
 function initGoogle() {
@@ -77,6 +80,7 @@ function initGoogle() {
 }
 
 // submit form
+// Felix Chung
 (() => {
   let form = document.getElementById("createPostForm");
   let submitButton = document.getElementById("submitButton");

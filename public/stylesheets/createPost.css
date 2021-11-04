@@ -1,3 +1,4 @@
+/* Whole file by Felix Chung */
 .post-description {
   box-sizing: border-box;
   width: 100%;
@@ -10,13 +11,13 @@
   width: 100%;
 }
 
+.border {
+  padding: 14px 18px;
+}
+
 main .container {
   margin-top: 3em;
   border-radius: 4px;
-}
-
-.border {
-  padding: 14px 18px;
 }
 
 input::-webkit-outer-spin-button,
@@ -30,6 +31,11 @@ input[type="number"] {
 }
 
 #map {
-  style="height: 500px;
-   width: 500px;
+  height: 500px;
+  width: 500px;
+}
+
+#postImageCarousel {
+  border: 2px solid black;
+  margin: 0 auto;
 }

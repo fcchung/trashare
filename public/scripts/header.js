@@ -1,3 +1,5 @@
+// Dynamic rendering of navbar
+// Fengrui Gan
 (() => {
   let header = document.getElementById("header");
 
@@ -20,7 +22,7 @@
 
   let createPostLink = user
     ? `<li class="nav-item">
-        <a class="nav-link" aria-current="page" href="./create-post">
+        <a class="nav-link" aria-current="page" href="/posts/create-post">
           <i class="far fa-plus-square"></i> Post your stuff
         </a>
       </li>`
