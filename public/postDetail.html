@@ -19,40 +19,50 @@
   <body>
     <header id="header" class="sticky-top"></header>
     <main>
-      <div class="container">
+      <div class="container mb-5">
         <h1 class="mb-3">Post 1</h1>
 
-        <div
-          id="postImageCarousel"
-          class="carousel slide w-50"
-          data-bs-ride="carousel"
-          data-bs-interval="false"
-        >
-          <div class="carousel-inner">loading images...</div>
+        <div class="row mb-5">
+          <div class="col-lg-8 col-xs-12">
+            <div
+              id="postImageCarousel"
+              class="carousel slide rounded w-75"
+              data-bs-ride="carousel"
+              data-bs-interval="false"
+            >
+              <div class="carousel-inner">loading images...</div>
 
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#postImageCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#postImageCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#postImageCarousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#postImageCarousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-4 col-xs-12">
+            <div id="map" style="height: 300px; width: 300px"></div>
+          </div>
         </div>
-
-        <div id="map" style="height: 300px; width: 300px"></div>
-
-        <div class="border">
+        <div class="border mb-3">
           <label> Description </label>
           <div id="description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ab
@@ -77,9 +87,5 @@
     <script src="/scripts/header.js"></script>
     <script src="/scripts/postDetail.js"></script>
     <!-- Google Map API -->
-    <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA64gIWJ4-ipJKJQXAEM7MCYA1pQfVrkcc&libraries=places&callback=initGoogle"
-    ></script>
   </body>
 </html>

@@ -24,15 +24,15 @@ router.get("/posts", (req, res) => {
   // res.send("Main post page");
 });
 
+//Get Create-post page
+router.get("/posts/create-post", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/createPost.html"));
+});
+
 // Get post with id
 router.get("/posts/:id", (req, res) => {
   // res.send(`Looking at post with id: ${req.params.id}`);
   res.sendFile(path.join(__dirname, "../public/postDetail.html"));
-});
-
-//Get Create-post page
-router.get("/create-post", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/createPost.html"));
 });
 
 module.exports = router;
