@@ -16,7 +16,11 @@ const read = async (collectionName, query) => {
     throw new TypeError("Query Expression is not an object");
   }
   const collection = await getDBCollection(collectionName);
-  let res = await collection.find(query).toArray();
+  let res = await collection
+    .find(query)
+    .limit(50)
+    .sort({ createdAt: -1 })
+    .toArray();
   return res;
 };
 
