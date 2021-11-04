@@ -1,3 +1,4 @@
+// Whole file by Fengrui Gan
 import { validateEmail, registerPasswordToggler } from "./utils.js";
 
 registerPasswordToggler();

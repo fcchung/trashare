@@ -1,3 +1,4 @@
+// Whole file by Fengrui Gan
 import { debounce, validateEmail, registerPasswordToggler } from "./utils.js";
 
 registerPasswordToggler();

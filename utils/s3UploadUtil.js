@@ -1,3 +1,4 @@
+// Whole file by Fengrui Gan
 const AWS = require("aws-sdk");
 const fs = require("fs");
 require("dotenv").config();
@@ -13,11 +14,7 @@ const uploadFileToS3 = (filename, fileKey, mimeType) => {
       ContentType: mimeType,
     };
 
-    s3.putObject(putObjectParams, (err) => {
-      if (err) {
-        console.error(err.message);
-      }
-    });
+    s3.putObject(putObjectParams, () => {});
   });
 };
 

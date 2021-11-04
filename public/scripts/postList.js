@@ -1,3 +1,4 @@
+// Whole file by Felix Chung
 (async () => {
   let posts = await fetch("/api/posts", {
     method: "get",

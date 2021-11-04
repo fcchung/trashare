@@ -1,3 +1,4 @@
+// Whole file by Felix Chung
 let geoloc = (async () => {
   let url = location.href;
   let id = url.substring(url.lastIndexOf("/") + 1);

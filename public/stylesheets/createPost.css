@@ -1,3 +1,4 @@
+/* Whole file by Felix Chung */
 .post-description {
   box-sizing: border-box;
   width: 100%;
@@ -30,6 +31,6 @@ input[type="number"] {
 }
 
 #map {
-  style="height: 500px;
-   width: 500px;
+  height: 500px;
+  width: 500px;
 }

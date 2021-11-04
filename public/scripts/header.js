@@ -1,3 +1,5 @@
+// Dynamic rendering of navbar
+// Fengrui Gan
 (() => {
   let header = document.getElementById("header");
 
