@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-
 // Read all posts
 router.get("/", async (req, res) => {
   let data;
@@ -49,7 +48,7 @@ router.post("/", upload.array("images"), async (req, res) => {
   files.forEach((ele) => {
     imageUpload(`./uploads/${ele.fileName}`, ele.fileKey, ele.mimeType);
     data.images.push(
-      "https//trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
+      "https://trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
     );
   });
 
@@ -66,14 +65,12 @@ router.post("/", upload.array("images"), async (req, res) => {
 router.get("/:id", async (req, res) => {
   let data;
   try {
-    data = await databaseManager.read("posts", { _id : req.params.id});
-
+    data = await databaseManager.read("posts", { _id: req.params.id });
   } catch (err) {
-    statusCode = 500
+    statusCode = 500;
     res.send(err);
   }
   res.send(JSON.stringify(data));
-
 });
 
 // Delete post with id

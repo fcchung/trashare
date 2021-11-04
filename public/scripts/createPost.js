@@ -89,7 +89,8 @@ function initGoogle() {
 
     formData.append("userEmail", user.email);
     formData.append("createdAt", new Date().getTime());
-    formData.append("location", geoLocation);
+    formData.append("latitude", geoLocation.lat());
+    formData.append("longitude", geoLocation.lat());
 
     let res = await fetch("/api/posts", {
       method: "post",
