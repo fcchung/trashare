@@ -27,11 +27,7 @@ Proposal Goals
 
 ## How to Use?
 
-- The index.html page is the Homepage of the website. 
-- The "Felix Chung" on top left conner will bring the user back to the home page.
-- The aboutMe tab will take user to the homepage about me section. 
-- The academic tab will take the user to the academic.html page which includes academic information
-- Contact tab will take user to the homepage contact section.
+- 
 
 ## [Video Demostration](####LINK####)
 
