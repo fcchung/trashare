@@ -104,7 +104,9 @@ function initGoogle() {
 
     if (res.ok) {
       let json = await res.json();
-      location.href = `/posts/${json.postId}`;
+      setTimeout(() => {
+        window.location.replace(`/posts/${json.postId}`);
+      }, 2000);
     }
     submitButton.classList.remove("disabled");
   });
