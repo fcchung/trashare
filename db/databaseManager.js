@@ -11,17 +11,29 @@ const create = async (collectionName, data) => {
   await collection.insertOne(data);
 };
 
-const read = async (collectionName, query) => {
+const read = async (collectionName, query, callbackChain) => {
   if (typeof query !== "object") {
     throw new TypeError("Query Expression is not an object");
   }
   const collection = await getDBCollection(collectionName);
-  let res = await collection
-    .find(query)
-    .limit(50)
-    .sort({ createdAt: -1 })
-    .toArray();
-  return res;
+  let res = collection.find(query);
+
+  // abstracting method chainning
+  // hoping to improve reusability
+  if (callbackChain) {
+    if (typeof callbackChain !== "object") {
+      throw new TypeError(
+        "Callback chain must be an object with callback as key and params array as value"
+      );
+    }
+    for (let cb in callbackChain) {
+      if (res[cb]) {
+        res = res[cb].apply(res, callbackChain[cb]);
+      }
+    }
+  }
+  res = res.toArray();
+  return await res;
 };
 
 const update = async (collectionName, filter) => {
