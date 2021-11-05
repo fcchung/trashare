@@ -133,4 +133,5 @@ function deletePost() {
       method: "delete",
     });
   })();
+  window.location.replace("/posts");
 }
