@@ -1,20 +1,30 @@
 // Whole file by Felix Chung
+const url = location.href;
+const id = url.substring(url.lastIndexOf("/") + 1);
+
+//get posts and return geo location
 let geoloc = (async () => {
-  let url = location.href;
-  let id = url.substring(url.lastIndexOf("/") + 1);
-
-  let posts = await fetch("/api/posts/" + id);
-  let datas = await posts.json();
-
+  const posts = await fetch("/api/posts/" + id);
+  const datas = await posts.json();
   if (posts.ok) {
     const title = document.querySelector("h1");
     const description = document.querySelector("#description");
     const createdAt = document.querySelector("#createdAt");
-    let data = datas[0];
+    const deleteButton = document.getElementById("deleteButton");
+    const siteTitle = document.querySelector("title");
+    const data = datas[0];
 
     title.innerHTML = data.title;
+    siteTitle.innerHTML = "Trashare: " + data.title;
     description.innerHTML = data.description;
     createdAt.innerHTML = "Published: " + timediff(data.createdAt);
+
+    //allow user to delete post
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
+    if (user.email == data.userEmail) {
+      deleteButton.style.visibility = "visible";
+    }
 
     //Load photo to carousel
     const postImages = document.querySelector(".carousel-inner");
@@ -112,4 +122,14 @@ function timediff(createdTime) {
         return seconds + " seconds ago";
       }
   }
+}
+
+//Delete post function
+function deletePost() {
+  confirm("Confirm to delete this post");
+  (async () => {
+    await fetch("/api/posts/" + id, {
+      method: "delete",
+    });
+  })();
 }

@@ -75,7 +75,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // Delete post with id
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
+  await databaseManager.destroy("posts", { _id: req.params.id });
+
   res.send(`Deleting post with id: ${req.params.id}`);
 });
 

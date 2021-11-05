@@ -1,0 +1,13 @@
+/* Whole file by Felix Chung */
+
+.headers {
+  display: inline-block;
+}
+
+hr {
+  margin-top: 0;
+}
+
+#deleteButton {
+  visibility: hidden;
+}
