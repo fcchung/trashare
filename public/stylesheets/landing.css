@@ -12,10 +12,31 @@ main {
   font-size: 5em;
 }
 
+#infoText {
+  align-self: center;
+  margin-top: 30px;
+  color: #2992fa;
+}
+
+#viewPostButton {
+  margin-top: 35px;
+  color: #3fa0ff;
+  border-color: #6eb6fd;
+}
+
 #brand i {
   align-self: center;
   font-size: 3em;
   margin-left: 0.25em;
+}
+
+#infoWrapper {
+  border-radius: 25px;
+  background-color: ;
+  color: #3fa0ff;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #quote {
