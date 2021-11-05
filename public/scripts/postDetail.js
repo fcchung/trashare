@@ -22,7 +22,7 @@ let geoloc = (async () => {
     //allow user to delete post
     const user = JSON.parse(sessionStorage.getItem("user"));
 
-    if (user.email == data.userEmail) {
+    if (user && user.email == data.userEmail) {
       deleteButton.style.visibility = "visible";
     }
 
