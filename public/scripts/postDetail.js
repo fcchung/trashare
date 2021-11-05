@@ -55,6 +55,7 @@ let geoloc = (async () => {
   }
 })();
 
+/* eslint-disable no-unused-vars*/
 //load google map lcation
 function initGoogle() {
   const google = window.google;

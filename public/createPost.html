@@ -22,12 +22,7 @@
       <div class="container">
         <h1 class="mb-3">New post</h1>
         <div class="border">
-          <form
-            id="createPostForm"
-            action="/api/posts"
-            method="POST"
-            enctype="multipart/form-data"
-          >
+          <form id="createPostForm" enctype="multipart/form-data">
             <div class="form-group">
               <label for="inputTitle"> Post Title </label>
               <input
@@ -47,7 +42,8 @@
                 id="inputDescription"
                 maxlength="300"
                 required
-              ></textarea>
+              >
+              </textarea>
             </div>
             <div class="form-group">
               <label for="uploadImage">Choose an image</label>
@@ -63,7 +59,7 @@
             </div>
             <div class="row mt-3 mb-3" id="imagePreview"></div>
             <div class="form-group">
-              <label for="inputAddress">Location</label>
+              <label for="inputLocation">Location</label>
               <input
                 type="text"
                 class="form-control"
@@ -99,5 +95,9 @@
     <script src="/scripts/header.js"></script>
     <script src="/scripts/createPost.js"></script>
     <!-- Google Map API -->
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA64gIWJ4-ipJKJQXAEM7MCYA1pQfVrkcc&libraries=places&callback=initGoogle"
+    ></script>
   </body>
 </html>
