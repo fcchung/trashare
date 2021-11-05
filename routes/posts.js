@@ -4,7 +4,6 @@ const router = express.Router();
 const databaseManager = require("../db/databaseManager");
 const imageUpload = require("../utils/s3UploadUtil");
 const uuid = require("uuid").v4;
-const path = require("path");
 let statusCode = 200;
 
 // Fengrui Gan
@@ -52,11 +51,7 @@ router.post("/", upload.array("images"), async (req, res) => {
 
   data.images = [];
   files.forEach((ele) => {
-    imageUpload(
-      path.join(__dirname, `uploads/${ele.fileName}`),
-      ele.fileKey,
-      ele.mimeType
-    );
+    imageUpload(`./uploads/${ele.fileName}`, ele.fileKey, ele.mimeType);
     data.images.push(
       "https://trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
     );
