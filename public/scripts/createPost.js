@@ -38,6 +38,7 @@
 // Felix Chung
 let geoLocation;
 
+/* eslint-disable no-unused-vars*/
 function initGoogle() {
   const google = window.google;
   let location = {

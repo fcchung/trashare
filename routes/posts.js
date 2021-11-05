@@ -23,8 +23,12 @@ const upload = multer({ storage: storage });
 // Read all posts
 router.get("/", async (req, res) => {
   let data;
+  let methodChain = {
+    limit: [50],
+    sort: [{ createdAt: -1 }],
+  };
   try {
-    data = await databaseManager.read("posts", {});
+    data = await databaseManager.read("posts", {}, methodChain);
   } catch (err) {
     statusCode = 500;
     res.send(err);
