@@ -18,18 +18,24 @@ Proposal Goals
 4. Only registered users can create posts.
 5. Users should be able to modify (stretch goal) and delete their own post
 
-[Link to landing page](####LINK####)
+[Link to landing page](https://trashare.herokuapp.com/)
 
 ![Home page of website](images/ ###screenshots###)
 
 ## Tech requirements
 
-- The home page should be able to opeb on most browser
+- The home page should be able to open on most browser
   -Chrome, Firefox, Safari, Internet Explore etc...
 
 ## How to Use?
-
--
+- Navigate through navbar or click "Click to start browsing treasures" to direct to list of posts.
+- All users can read and browse posts
+- Register a new account or sign in to create posts
+- Click the post title to view posts
+- Click create post button after sign in to create post
+- Click choose file to upload file
+- Enter address and choose the address automatically filled by Goole API
+- All field must be filled inorder to create post, and click create post button to create post
 
 ## [Video Demostration](####LINK####)
 
