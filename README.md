@@ -1,15 +1,15 @@
 # Trashare
 
-Trash sharing platform
-Author: Fengrui Gan, Felix Chung
+<br>Trash sharing platform<br/>
+<br>Author: Fengrui Gan, Felix Chung<br/>
 
 Website for project 2 in [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_fall_2021/).
 
 ## Project Objective
 
-The objective is to build platform for people to share their unwanted items with others.
+<br>The objective is to build platform for people to share their unwanted items with others. <br/>
 The should should show no error in the [W3C Compliant](https://validator.w3.org/#validate_by_input)
-It should implement at least 1 form.
+<br>It should implement at least 1 form.<br/>
 
 ## Proposal Goals
 
