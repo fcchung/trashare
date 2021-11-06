@@ -38,14 +38,15 @@ The should should show no error in the [W3C Compliant](https://validator.w3.org/
 - Click create post button after sign in to create post
 - Click choose file to upload file
 - Enter address and choose the address automatically filled by Goole API
-- All field must be filled inorder to create post, and click create post button to create post
+- All field must be filled in order to create post, and click create post button to create post
 
 ## Instruction to build
 
 - When testing file, create your own .env file that inclode: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DB_URL.
-- Create your own Amazon Web Serverce for image upload
-- Create your own google account for Goole Map and Goole Place API.
-- Insert follow instruction on AWS and google to connect to AWS database and google map API.
+- Create your own Amazon Web Serverce account for image upload
+- Create your own google account for Google Map and Google Place API.
+- Insert follow instruction on AWS and google to connect to AWS S3 and google map API.
 - Deploy these files on any server
 
 ## [Video Demostration](####LINK####)
+## [Slides](https://docs.google.com/presentation/d/1Vfwai_Shm6E11dGGUrb8bUUEbyVstN1IpY3wyM0T9JM/edit?usp=sharing)

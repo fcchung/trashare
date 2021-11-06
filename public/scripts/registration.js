@@ -17,9 +17,11 @@ let form = document.getElementById("signUpForm");
     signUpButton.classList.add("disabled");
     if (!form.checkValidity()) {
       form.classList.add("was-validated");
+      signUpButton.classList.remove("disabled");
       return;
     }
     if (!emailIsValid) {
+      signUpButton.classList.remove("disabled");
       return;
     }
 
