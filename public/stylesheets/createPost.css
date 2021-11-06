@@ -33,9 +33,5 @@ input[type="number"] {
 #map {
   height: 500px;
   width: 500px;
-}
-
-#postImageCarousel {
-  border: 2px solid black;
   margin: 0 auto;
 }
