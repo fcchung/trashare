@@ -20,7 +20,7 @@ Proposal Goals
 
 [Link to landing page](https://trashare.herokuapp.com/)
 
-![Home page of website](images/ ###screenshots###)
+![Home page of website](/public/images/homepage.png)
 
 ## Tech requirements
 
