@@ -1,13 +1,15 @@
 // By Fengrui Gan and Felix Chung
 const ConnectionPool = require("./ConnectionPool");
+const { ObjectId } = require("mongodb");
 
 const getDBCollection = async (collectionName) => {
   const conn = await ConnectionPool();
   return conn.getDB().collection(collectionName);
 };
 
-const create = async (collectionName, data) => {
+const create = async (collectionName, data, objectId) => {
   const collection = await getDBCollection(collectionName);
+  if (objectId) data._id = new ObjectId(objectId);
   await collection.insertOne(data);
 };
 

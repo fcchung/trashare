@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
       _id: req.body.email,
     });
     let user = users[0];
-    if (user.password === req.body.password) {
+    if (user && user.password === req.body.password) {
       data.user = {
         firstName: user.firstName,
         lastName: user.lastName,

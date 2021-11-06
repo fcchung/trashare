@@ -3,6 +3,7 @@ import { validateEmail, registerPasswordToggler } from "./utils.js";
 
 registerPasswordToggler();
 let form = document.getElementById("loginForm");
+let emailIsValid = false;
 
 // AJAX form submit
 (() => {
@@ -18,8 +19,15 @@ let form = document.getElementById("loginForm");
 
     if (!form.checkValidity()) {
       form.classList.add("was-validated");
+      loginButton.classList.remove("disabled");
       return;
     }
+
+    if (!emailIsValid) {
+      loginButton.classList.remove("disabled");
+      return;
+    }
+
     let formData = new FormData(form);
     let data = {};
     formData.forEach((val, key) => {
@@ -51,6 +59,7 @@ let form = document.getElementById("loginForm");
   let email = document.getElementById("email");
   let errorMsg = document.getElementById("emailErrorMsg");
   const checkFormat = async () => {
+    form.classList.remove("was-validated");
     if (email.value === "") {
       email.classList.add("is-invalid");
       errorMsg.innerText = "Please input email";
@@ -58,8 +67,12 @@ let form = document.getElementById("loginForm");
       email.classList.add("is-invalid");
       errorMsg.innerText = "Email format incorrect";
     } else {
+      emailIsValid = true;
       email.classList.remove("is-invalid");
     }
+  };
+  email.onkeydown = () => {
+    emailIsValid = false;
   };
   email.onkeyup = checkFormat;
 })();
