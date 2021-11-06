@@ -1,4 +1,4 @@
-# trashare
+# Trashare
 
 Trash sharing platform
 Author: Fengrui Gan, Felix Chung
