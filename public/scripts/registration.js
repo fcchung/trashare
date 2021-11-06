@@ -79,8 +79,8 @@ let form = document.getElementById("signUpForm");
       email.classList.add("is-valid");
     }
   };
-  email.onkeydown = () => {
+  email.onkeyup = () => {
     emailIsValid = false;
+    debounce(checkAvailable, 1000)();
   };
-  email.onkeyup = debounce(checkAvailable, 1000);
 })();

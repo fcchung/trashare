@@ -58,7 +58,7 @@ let emailIsValid = false;
 (() => {
   let email = document.getElementById("email");
   let errorMsg = document.getElementById("emailErrorMsg");
-  const checkFormat = async () => {
+  const checkFormat = () => {
     form.classList.remove("was-validated");
     if (email.value === "") {
       email.classList.add("is-invalid");
@@ -71,8 +71,8 @@ let emailIsValid = false;
       email.classList.remove("is-invalid");
     }
   };
-  email.onkeydown = () => {
+  email.onkeyup = () => {
     emailIsValid = false;
+    checkFormat();
   };
-  email.onkeyup = checkFormat;
 })();
