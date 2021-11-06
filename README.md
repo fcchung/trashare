@@ -11,7 +11,7 @@ The objective is to build platform for people to share their unwanted items with
 The should should show no error in the [W3C Compliant](https://validator.w3.org/#validate_by_input)
 It should implement at least 1 form.
 
-Proposal Goals
+## Proposal Goals
 
 1. User registration/login.
 2. All visitors can read posts
@@ -40,7 +40,8 @@ Proposal Goals
 - Enter address and choose the address automatically filled by Goole API
 - All field must be filled inorder to create post, and click create post button to create post
 
-##Instruction to build
+## Instruction to build
+
 - When testing file, create your own .env file that inclode: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DB_URL.
 - Create your own Amazon Web Serverce for image upload
 - Create your own google account for Goole Map and Goole Place API.
