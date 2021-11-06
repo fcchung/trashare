@@ -8,6 +8,23 @@ hr {
   margin-top: 0;
 }
 
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#postImageCarousel {
+  margin: 0 auto 3em auto;
+}
+
 #deleteButton {
   visibility: hidden;
+  float: right;
+  margin-right: 5em;
+}
+
+#map {
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
 }
