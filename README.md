@@ -1,6 +1,7 @@
 # trashare
 
 Trash sharing platform
+Author: Fengrui Gan, Felix Chung
 
 Website for project 2 in [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_fall_2021/).
 
@@ -21,6 +22,8 @@ Proposal Goals
 [Link to landing page](https://trashare.herokuapp.com/)
 
 ![Home page of website](/public/images/homepage.png)
+![Demo of post page](/public/images/postdemo.png)
+
 
 ## Tech requirements
 
@@ -37,26 +40,11 @@ Proposal Goals
 - Enter address and choose the address automatically filled by Goole API
 - All field must be filled inorder to create post, and click create post button to create post
 
-## [Video Demostration](####LINK####)
+##Instruction to build
+- When testing file, create your own .env file that inclode: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DB_URL.
+- Create your own Amazon Web Serverce for image upload
+- Create your own google account for Goole Map and Goole Place API.
+- Insert follow instruction on AWS and google to connect to AWS database and google map API.
+- Deploy these files on any server
 
-Rubric
-Does the app accomplish all the requirements approved in #project 15
-Is the app usable? Does it include instructions on how to be used? 5
-Is the app actually useful? Would a final user use it? 5
-The code includes an eslint config file and it doesn't throw any error 5
-Is the code properly organized. Each page in its own file. Database files separate, CSS into folders, etc. 5
-Does it implement at least 1 form 15
-Is the project deployed on a public server? Does it work there? 5
-Does it use at least 2 Mongo Collections, supporting CRUD operations on them? 15
-Does the app use node + express 5
-The page is formatted using Prettier 5
-Doesn't use non standard tags for accomplishing tasks that should be done with standard components? e.g. Buttons implemented with divs or spans 5
-Is the CSS organized by Modules? Each module has its own css file as shown in class 5
-Clear and descriptive README including: _ Author _ Class Link _ Project Objective _ Screenshot \* Instructions to build 10
-It doesn't expose any secret credentials such as the Mongo USER and Password 10
-Does it include a package.json file listing all the dependencies of the project 5
-Does it use MIT license 5
-The project doesn't include leftover code that isn't used. e.g. routes/users.js or the default react faveicon 5
-Is the google Form submission correct (thumbnail displays correctly, and links work as well) 5
-Does it include a short public and narrated video demonstrating the application 10
-The code was frozen on time (24 hours before class). Video, slides and deployment were completed before class 5
+## [Video Demostration](####LINK####)
