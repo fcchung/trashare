@@ -51,14 +51,11 @@ function initGoogle() {
   };
   let map = new google.maps.Map(document.getElementById("map"), options);
 
-  let autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("inputLocation"),
-    {
-      types: ["geocode"],
-      componentRestrictions: { country: ["us"] },
-      fields: ["geometry", "name"],
-    }
-  );
+  let autocomplete = new google.maps.places.Autocomplete(document.getElementById("inputLocation"), {
+    types: ["geocode"],
+    componentRestrictions: { country: ["us"] },
+    fields: ["geometry", "name"],
+  });
 
   autocomplete.addListener("place_changed", () => {
     let place = autocomplete.getPlace();
