@@ -24,9 +24,7 @@ const read = async (collectionName, query, callbackChain) => {
   // hoping to improve reusability
   if (callbackChain) {
     if (typeof callbackChain !== "object") {
-      throw new TypeError(
-        "Callback chain must be an object with callback as key and params array as value"
-      );
+      throw new TypeError("Callback chain must be an object with callback as key and params array as value");
     }
     for (let cb in callbackChain) {
       if (res[cb]) {

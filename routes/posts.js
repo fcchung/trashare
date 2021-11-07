@@ -52,9 +52,7 @@ router.post("/", upload.array("images"), async (req, res) => {
   data.images = [];
   files.forEach((ele) => {
     imageUpload(`./uploads/${ele.fileName}`, ele.fileKey, ele.mimeType);
-    data.images.push(
-      "https://trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey
-    );
+    data.images.push("https://trash-sharing-bucket.s3.us-west-2.amazonaws.com/" + ele.fileKey);
   });
 
   try {
