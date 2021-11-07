@@ -126,11 +126,10 @@ function timediff(createdTime) {
 }
 
 //Delete post function
-function deletePost() {
-  (async () => {
-    await fetch("/api/posts/" + id, {
-      method: "delete",
-    });
-  })();
+async function deletePost() {
+  await fetch("/api/posts/" + id, {
+    method: "delete",
+  });
+
   window.location.replace("/posts");
 }
