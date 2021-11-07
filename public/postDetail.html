@@ -25,8 +25,9 @@
       <div class="container mb-5">
         <div>
           <h1 id="title" class="mb-3 headers">>Post 1</h1>
+          <button id="deleteButton" class="btn headers" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+            <i class="fa fa-trash"></i>
           <button
-            onclick="deletePost()"
             id="deleteButton"
             class="btn btn-danger headers"
           >
@@ -34,6 +35,21 @@
           </button>
         </div>
         <hr />
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmDeleteModal">Delete this post?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Click confirm to delete this post</div>
+            <div class="modal-footer">
+              <button onclick ="deletePost()" type="button" class="btn btn-primary">Confirm</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
         <div class="row mb-5">
           <div class="col-lg-8 col-xs-12">

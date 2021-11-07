@@ -127,7 +127,6 @@ function timediff(createdTime) {
 
 //Delete post function
 function deletePost() {
-  confirm("Confirm to delete this post");
   (async () => {
     await fetch("/api/posts/" + id, {
       method: "delete",
