@@ -50,3 +50,10 @@ The should should show no error in the [W3C Compliant](https://validator.w3.org/
 
 ## [Video Demostration](https://youtu.be/ac_AmGwVtqY)
 ## [Slides](https://docs.google.com/presentation/d/1Vfwai_Shm6E11dGGUrb8bUUEbyVstN1IpY3wyM0T9JM/edit?usp=sharing)
+
+
+## Code Review Comments by Kennedy C. Ezumah for Fengrui Gan
+- Great work! I particularly enjoyed how you were able to build a full-stack project that not only met the technical requirements, but also presented a useful solution to a real-world problem.
+- I found the overall design and layout of your platform simple and easy to use, which I believe would make it attractive to users. From a technical standpoint, I can see how choosing a clean UI would be beneficial in enabling you to invest more of your time in building out the core functionality of your application.
+- Your code is clean, easy to follow, and the division of responsibilities is clearly documented.
+- Some ideas for future features to implement: it would be nice to have an automated "Contact" process, in which users could simply email owners by the click of a button!
